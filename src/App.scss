@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+$bg-primary-color: #ffffff;
+$font-size: 16px;
+$font-family: "Poppins", sans-serif;
+$sm-text-color: #848fac;
+$lg-text-color: #192252;
+$btn-color: #103f74;
+$border-color: #c5d0e6;
+$sm-weight: 400;
+$lg-weight: 600;
+
+body {
+  font-family: $font-family;
+  // font-weight: $lg-weight;
+  font-size: $font-size;
+  form {
+    input {
+      border-radius: 6px;
+      padding: 10px 10px;
+      border: 2px solid $border-color;
+      font-weight: 400;
+      font-family: $font-family;
+    }
+  }
+}

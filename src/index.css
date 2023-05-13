@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-fill {
+  @apply bg-blue text-white rounded-md py-2 hover:opacity-80 transition-opacity;
+}
+.btn-outline {
+  @apply flex items-center justify-center gap-3 border rounded-md py-2 hover:opacity-80 transition-opacity;
+}
