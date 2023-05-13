@@ -1,7 +1,39 @@
+import { useState } from "react";
 import Doctors from "../components/Doctors";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
+import { loginWithEmailAndPassword } from "../utils/firebase/firebase";
+import { toast } from "react-toastify";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../utils/redux/slices/authSlice";
+import { RootState } from "../utils/redux/store";
+import { Navigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const user = useSelector((state: RootState) => state.auth.user?.token);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!email.length || !password.length) {
+      toast.error("Please fill all fields");
+      return;
+    }
+    const res = await loginWithEmailAndPassword(email, password);
+    console.log(res);
+    if (res?.token) {
+      dispatch(login({ user: res }));
+      navigate("/dashboard");
+    }
+  }
+  console.log(user);
+  if (user) {
+    console.log(user);
+    <Navigate to="/dashboard" />;
+  }
   return (
     <div className="md:pl-12 flex justify-between gap-12">
       <div className="flex-1 my-12 items-center">
@@ -13,24 +45,25 @@ const Login = () => {
           <p className="text-md mt-3 text-main">
             Let’s Enter your data to continue use healthy 24 services
           </p>
-          <form
-            className="flex flex-col gap-2 py-12"
-            onSubmit={() => console.log("clicked")}
-          >
+          <form className="flex flex-col gap-2 py-12" onSubmit={handleSubmit}>
             <div className="flex flex-col">
               <label htmlFor="email">Email</label>
               <input
                 type="email"
                 placeholder="Enter Your email here"
                 id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex flex-col">
               <label htmlFor="password">Password</label>
               <input
-                type="text"
+                type="password"
                 placeholder="Enter Your name here"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="flex justify-between gap-3 my-6">
