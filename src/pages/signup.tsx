@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { registerWithEmailAndPassword } from "../utils/firebase/firebase";
 import { useSelector } from "react-redux";
 import { RootState } from "../utils/redux/store";
-import { Navigate } from "react-router";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {

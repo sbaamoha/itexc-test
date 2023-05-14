@@ -1,6 +1,5 @@
 import Dashboard from "./pages/dashboard";
 import ForgotPassword from "./pages/forgotPassword";
-import HomePage from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 
