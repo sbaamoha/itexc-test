@@ -1,39 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Doctors from "../components/Doctors";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
-import { loginWithEmailAndPassword } from "../utils/firebase/firebase";
+import {
+  loginWithEmailAndPassword,
+  loginWithGoogle,
+} from "../utils/firebase/firebase";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../utils/redux/slices/authSlice";
 import { RootState } from "../utils/redux/store";
-import { Navigate } from "react-router";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Login = () => {
-  const user = useSelector((state: RootState) => state.auth.user?.token);
+  const user = useSelector((state: RootState) => state.auth.user?.email);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, []);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.length || !password.length) {
       toast.error("Please fill all fields");
       return;
     }
-    const res = await loginWithEmailAndPassword(email, password);
-    console.log(res);
-    if (res?.token) {
-      dispatch(login({ user: res }));
+    const user = await loginWithEmailAndPassword(email, password);
+    if (user?.token) {
+      dispatch(login({ user }));
+      if (rememberMe) {
+        Cookies.set("user", JSON.stringify(user));
+      }
       navigate("/dashboard");
     }
   }
-  console.log(user);
-  if (user) {
-    console.log(user);
-    <Navigate to="/dashboard" />;
-  }
+
   return (
     <div className="md:pl-12 flex justify-between gap-12">
       <div className="flex-1 my-12 items-center">
@@ -68,7 +75,12 @@ const Login = () => {
             </div>
             <div className="flex justify-between gap-3 my-6">
               <div className="flex gap-2">
-                <input className="text-lg" type="checkbox" id="rememberMe" />
+                <input
+                  className="text-lg"
+                  type="checkbox"
+                  id="rememberMe"
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                />
                 <label
                   htmlFor="rememberMe"
                   className="text-sm text-main cursor-pointer"
@@ -83,11 +95,43 @@ const Login = () => {
             <div className="w-full flex flex-col gap-6">
               <button className="btn-fill">Sign In</button>
               <p className="mx-auto">Or</p>
-              <button type="button" className="btn-outline">
+              <button
+                onClick={() => {
+                  loginWithGoogle()
+                    .then((user) => {
+                      dispatch(login({ user }));
+                      Cookies.set("user", JSON.stringify(user), {
+                        expires: 1,
+                      });
+                      navigate("/dashboard");
+                    })
+                    .catch((error) => {
+                      toast.error(error.message);
+                    });
+                }}
+                type="button"
+                className="btn-outline"
+              >
                 <AiOutlineGoogle className="text-2xl" />
                 Sign In with Google
               </button>
-              <button type="button" className="btn-outline">
+              <button
+                onClick={() => {
+                  loginWithGoogle()
+                    .then((user) => {
+                      dispatch(login({ user }));
+                      Cookies.set("user", JSON.stringify(user), {
+                        expires: 1,
+                      });
+                      navigate("/dashboard");
+                    })
+                    .catch((error) => {
+                      toast.error(error.message);
+                    });
+                }}
+                type="button"
+                className="btn-outline"
+              >
                 <FaFacebookF className="text-2xl" />
                 Sign In with Facebook
               </button>

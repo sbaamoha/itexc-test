@@ -2,17 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 export interface userState {
-  user: {
-    username: string | null;
-    email: string | null;
-    token: string;
-  } | null;
-}
-
-const initialState: userState = {
   user:
-    (Cookies.get("user") && JSON.parse(JSON.stringify(Cookies.get("user")))) ||
-    null,
+    | {
+        username: string | null;
+        email: string | null;
+        token: string;
+        image?: string | null;
+      }
+    | undefined;
+}
+const initialState: userState = {
+  user: Cookies.get("user") ? JSON.parse(Cookies.get("user") as any) : null,
 };
 
 export const authSlice = createSlice({
@@ -21,10 +21,10 @@ export const authSlice = createSlice({
   reducers: {
     login: (state, action: PayloadAction<userState>) => {
       state.user = action.payload.user;
-      Cookies.set("user", JSON.stringify(action.payload.user));
     },
     logout: (state) => {
-      state.user = null;
+      console.log("runnning");
+      state.user = undefined;
       Cookies.remove("user");
     },
   },

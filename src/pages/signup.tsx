@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Doctors from "../components/Doctors";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
@@ -10,12 +10,16 @@ import { Navigate } from "react-router";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const user = useSelector((state: RootState) => state.auth.user?.username);
+  const user = useSelector((state: RootState) => state.auth.user?.email);
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
-
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, []);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.length || !password.length) {
@@ -27,9 +31,7 @@ const Signup = () => {
       navigate("/login");
     }
   }
-  if (user) {
-    <Navigate to="/dashboard" />;
-  }
+
   return (
     <div className="md:pl-12 flex justify-between gap-12">
       <div className="flex-1 my-12 items-center">
