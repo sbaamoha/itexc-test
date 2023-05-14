@@ -77,9 +77,9 @@ const SideBar = ({
                   ) : (
                     <p></p>
                   )}
-                  <a className="text-sm" href="/profile">
+                  <p onClick={() => onLinkClick("profile")} className="text-sm">
                     Edit My Profile
-                  </a>
+                  </p>
                 </div>
               ) : (
                 <a href="/login">login</a>

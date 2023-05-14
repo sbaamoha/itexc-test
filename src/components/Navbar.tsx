@@ -73,9 +73,7 @@ const Navbar = ({
                 className="absolute bottom-[-150px] right-0 flex flex-col gap-3 w-[200px] capitalize bg-white 
               shadow-lg border rounded-md p-6"
               >
-                <a className="border-b" href="/profile">
-                  profile
-                </a>
+                <p className="border-b">profile</p>
                 <button className="btn-outline" onClick={handleLogout}>
                   log out
                 </button>
