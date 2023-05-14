@@ -6,7 +6,7 @@ const ForgotPassword = () => {
       <div className="flex-1 my-auto items-center">
         <h2 className="flex items-center gap-3 my-3 text-xl md:text-4xl text-softBlue">
           Forget Password
-          <img src="./public/assets/forgotPwIcon.svg" />
+          <img src="/assets/forgotPwIcon.svg" />
         </h2>
         <p className="text-main">Enter your email to recover password </p>
         <form className="flex flex-col gap-6 my-12">

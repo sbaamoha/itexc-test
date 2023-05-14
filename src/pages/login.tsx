@@ -47,7 +47,7 @@ const Login = () => {
         <div className="px-6">
           <h1 className="flex items-center gap-3 text-xl md:text-4xl text-softBlue">
             Welcome To Healthy 24
-            <img src="./src/assets/excellentIcon.svg" alt="hello" />
+            <img src="/assets/excellentIcon.svg" alt="hello" />
           </h1>
           <p className="text-md mt-3 text-main">
             Let’s Enter your data to continue use healthy 24 services

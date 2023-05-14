@@ -10,23 +10,23 @@ const navLinks: LinkType[] = [
   {
     url: "/dashboard",
     name: "dashboard",
-    img: "./public/assets/dashboard.svg",
+    img: "/assets/dashboard.svg",
   },
   {
     url: "#patient-list",
     name: "patient list",
-    img: "./public/assets/patientList.svg",
+    img: "/assets/patientList.svg",
   },
-  { url: "#messages", name: "messages", img: "./public/assets/messages.svg" },
+  { url: "#messages", name: "messages", img: "/assets/messages.svg" },
   {
     url: "#appointment",
     name: "appointment",
-    img: "./public/assets/appointment.svg",
+    img: "/assets/appointment.svg",
   },
   {
     url: "#medical-history",
     name: "medical history",
-    img: "./public/assets/medical-history.svg",
+    img: "/assets/medical-history.svg",
   },
 ];
 
@@ -54,13 +54,13 @@ const SideBar = ({
             <button className="md:hidden" onClick={() => setNavOpened(false)}>
               <img
                 className="w-[33px] cursor-pointer"
-                src="./public/assets/menuClose.svg"
+                src="/assets/menuClose.svg"
                 alt="close menu icon"
               />
             </button>
             <img
               className="w-full md:hidden h-[60px] pb-3"
-              src="./public/assets/logo.svg"
+              src="/assets/logo.svg"
               alt="logo"
             />
           </div>
@@ -88,7 +88,7 @@ const SideBar = ({
             <div className="flex items-center gap-3">
               <img
                 className="cursor-pointer"
-                src="./public/assets/notification.svg"
+                src="/assets/notification.svg"
                 alt="notification icon"
               />
               <p>Notification</p>
@@ -96,7 +96,7 @@ const SideBar = ({
             <div className="flex items-center gap-3">
               <img
                 className="cursor-pointer"
-                src="./public/assets/setting.svg"
+                src="/assets/setting.svg"
                 alt="settings icon"
               />
               <p>Settings</p>

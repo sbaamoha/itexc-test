@@ -3,7 +3,7 @@ const Doctors = () => {
     <div className="hidden lg:block">
       <img
         className="h-[100vh]"
-        src="./public/assets/doctors.svg"
+        src="/assets/doctors.svg"
         alt="doctors image"
         loading="lazy"
       />
