@@ -37,7 +37,7 @@ const Signup = () => {
         <div className="px-6">
           <h1 className="flex items-center gap-3 text-xl md:text-4xl text-softBlue">
             Sing up your account
-            <img src="./src/assets/hello.svg" alt="hello" />
+            <img src="./public/assets/hello.svg" alt="hello" />
           </h1>
           <p className="text-md mt-3 text-main">
             Let’s Enter your data to continue use healthy 24 services

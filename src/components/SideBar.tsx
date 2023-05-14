@@ -7,22 +7,26 @@ type LinkType = {
   img: string;
 };
 const navLinks: LinkType[] = [
-  { url: "/dashboard", name: "dashboard", img: "./src/assets/dashboard.svg" },
+  {
+    url: "/dashboard",
+    name: "dashboard",
+    img: "./public/assets/dashboard.svg",
+  },
   {
     url: "#patient-list",
     name: "patient list",
-    img: "./src/assets/patientList.svg",
+    img: "./public/assets/patientList.svg",
   },
-  { url: "#messages", name: "messages", img: "./src/assets/messages.svg" },
+  { url: "#messages", name: "messages", img: "./public/assets/messages.svg" },
   {
     url: "#appointment",
     name: "appointment",
-    img: "./src/assets/appointment.svg",
+    img: "./public/assets/appointment.svg",
   },
   {
     url: "#medical-history",
     name: "medical history",
-    img: "./src/assets/medical-history.svg",
+    img: "./public/assets/medical-history.svg",
   },
 ];
 
@@ -50,13 +54,13 @@ const SideBar = ({
             <button className="md:hidden" onClick={() => setNavOpened(false)}>
               <img
                 className="w-[33px] cursor-pointer"
-                src="./src/assets/menuClose.svg"
+                src="./public/assets/menuClose.svg"
                 alt="close menu icon"
               />
             </button>
             <img
               className="w-full md:hidden h-[60px] pb-3"
-              src="./src/assets/logo.svg"
+              src="./public/assets/logo.svg"
               alt="logo"
             />
           </div>
@@ -84,7 +88,7 @@ const SideBar = ({
             <div className="flex items-center gap-3">
               <img
                 className="cursor-pointer"
-                src="./src/assets/notification.svg"
+                src="./public/assets/notification.svg"
                 alt="notification icon"
               />
               <p>Notification</p>
@@ -92,7 +96,7 @@ const SideBar = ({
             <div className="flex items-center gap-3">
               <img
                 className="cursor-pointer"
-                src="./src/assets/setting.svg"
+                src="./public/assets/setting.svg"
                 alt="settings icon"
               />
               <p>Settings</p>
