@@ -113,7 +113,10 @@ const SideBar = ({
                 activeComponent === link.name ? "text-black bg-gray-100" : ""
               }`}
               // activeClassName="text-main"
-              onClick={() => onLinkClick(link.name)}
+              onClick={() => {
+                setNavOpened(false);
+                onLinkClick(link.name);
+              }}
             >
               <img src={link.img} alt={link.name} />
               {link.name}

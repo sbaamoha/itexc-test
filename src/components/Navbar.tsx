@@ -8,9 +8,13 @@ import { useState } from "react";
 const Navbar = ({
   navOpened,
   setNavOpened,
+  onLinkClick,
+  activeComponent,
 }: {
   navOpened: boolean;
   setNavOpened: (status: boolean) => void;
+  onLinkClick: (component: string) => void;
+  activeComponent: string;
 }) => {
   const [dropDownOpen, setDropdownOpen] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
@@ -38,7 +42,7 @@ const Navbar = ({
       </div>
       {!navOpened && (
         <div className="md:hidden">
-          <h2 className="text-blue text-lg">Dashboard</h2>
+          <h2 className="text-blue text-lg capitalize">{activeComponent}</h2>
         </div>
       )}
       <div className="flex justify-center items-center gap-3 md:gap-6">
@@ -73,7 +77,9 @@ const Navbar = ({
                 className="absolute bottom-[-150px] right-0 flex flex-col gap-3 w-[200px] capitalize bg-white 
               shadow-lg border rounded-md p-6"
               >
-                <p className="border-b">profile</p>
+                <p onClick={() => onLinkClick("profile")} className="border-b">
+                  profile
+                </p>
                 <button className="btn-outline" onClick={handleLogout}>
                   log out
                 </button>

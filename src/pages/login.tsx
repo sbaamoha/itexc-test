@@ -4,6 +4,7 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
 import {
   loginWithEmailAndPassword,
+  loginWithFacebook,
   loginWithGoogle,
 } from "../utils/firebase/firebase";
 import { toast } from "react-toastify";
@@ -117,7 +118,7 @@ const Login = () => {
               </button>
               <button
                 onClick={() => {
-                  loginWithGoogle()
+                  loginWithFacebook()
                     .then((user) => {
                       dispatch(login({ user }));
                       Cookies.set("user", JSON.stringify(user), {

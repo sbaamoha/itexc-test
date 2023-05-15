@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import { routes } from "./routes";
+
 // import { useSelector, useDispatch } from "react-redux";
 // import { decrement, increment } from "./utils/redux/slices/counterReducer";
 function App() {

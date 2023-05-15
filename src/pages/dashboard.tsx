@@ -1,12 +1,17 @@
-import SideBar from "../components/SideBar";
-
 import { useState } from "react";
-import DashboardContent from "../components/DashboardContent";
+import SideBar from "../components/SideBar";
+import DashboardContent from "../components/dashboard/DashboardContent";
 import Navbar from "../components/Navbar";
+import AppoinmentsContent from "../components/AppoinmentsContent";
+import MessagesContent from "../components/messages/MessagesContent";
+import PatienListContent from "../components/PatienListContent";
+import MedicalHistoryContent from "../components/MedicalHistoryContent";
+import Profile from "../components/Profile";
 
 const Dashboard = () => {
   const [activeComponent, setActiveComponent] = useState<string>("dashboard");
   const [navOpened, setNavOpened] = useState(false);
+
   const handleLinkClick = (component: string) => {
     setActiveComponent(component);
   };
@@ -16,7 +21,12 @@ const Dashboard = () => {
 
   return (
     <section>
-      <Navbar navOpened={navOpened} setNavOpened={handleNavMenuClick} />
+      <Navbar
+        activeComponent={activeComponent}
+        onLinkClick={handleLinkClick}
+        navOpened={navOpened}
+        setNavOpened={handleNavMenuClick}
+      />
       <div className="flex">
         <SideBar
           setNavOpened={handleNavMenuClick}
@@ -26,6 +36,11 @@ const Dashboard = () => {
         />
         <div className="flex-1 p-6">
           {activeComponent === "dashboard" && <DashboardContent />}
+          {activeComponent === "appointment" && <AppoinmentsContent />}
+          {activeComponent === "messages" && <MessagesContent />}
+          {activeComponent === "patient list" && <PatienListContent />}
+          {activeComponent === "medical history" && <MedicalHistoryContent />}
+          {activeComponent === "profile" && <Profile />}
           {/* <h1>user : {user?.username || user?.email}</h1>
         <button onClick={() => handleLogout()}>logout</button>
         <a className="block" href="/login">

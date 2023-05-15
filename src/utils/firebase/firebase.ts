@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
+  FacebookAuthProvider,
   getAuth,
   signInWithPopup,
   signInWithEmailAndPassword,
@@ -30,6 +31,7 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
 
 export const registerWithEmailAndPassword = async (
   name: string,
@@ -50,6 +52,32 @@ export const registerWithEmailAndPassword = async (
     //console.log(err);
     // alert(err);
     return false;
+  }
+};
+
+export const loginWithFacebook = async () => {
+  try {
+    const res = await signInWithPopup(auth, facebookProvider);
+    const user = res.user;
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const docs = await getDocs(q);
+    if (docs.docs.length === 0) {
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name: user.displayName,
+        authProvider: "facebook",
+        email: user.email,
+      });
+    }
+    return {
+      username: user.displayName,
+      email: user.email,
+      token: user.refreshToken,
+      image: user.photoURL,
+    };
+  } catch (err) {
+    //console.error(err);
+    alert(err);
   }
 };
 export const loginWithGoogle = async () => {
