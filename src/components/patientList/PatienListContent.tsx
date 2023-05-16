@@ -3,8 +3,8 @@ import { CiSearch } from "react-icons/ci";
 import { FiDownload, FiFilter } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { RootState } from "src/utils/redux/store";
-import PatientCart from "./patientList/PatientCart";
-import SinglePatient from "./patientList/SinglePatient";
+import PatientCart from "./PatientCart";
+import SinglePatient from "./SinglePatient";
 
 const PatienListContent = () => {
   const [search, setSearch] = useState<string>();

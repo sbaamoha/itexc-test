@@ -19,12 +19,12 @@ const MedicalHistory = () => {
       queryClient.invalidateQueries({ queryKey: ["appointments"] });
     },
   });
-  //   const acceptMutation = useMutation({
-  //     mutationFn: acceptAppointmentFunc,
-  //     onSuccess: () => {
-  //       queryClient.invalidateQueries({ queryKey: ["appointments"] });
-  //     },
-  //   });
+  // const acceptMutation = useMutation({
+  //   mutationFn: acceptAppointmentFunc,
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: ["appointments"] });
+  //   },
+  // });
   const handleDelteAppoint = (appointment: Appointment) => {
     dispatch(deleteAppointment(appointment.id));
     deleteMutation.mutate(appointment);

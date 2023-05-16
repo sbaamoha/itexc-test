@@ -2,11 +2,10 @@ import { useState } from "react";
 import SideBar from "../components/SideBar";
 import DashboardContent from "../components/dashboard/DashboardContent";
 import Navbar from "../components/Navbar";
-import AppoinmentsContent from "../components/AppoinmentsContent";
+import AppoinmentsContent from "../components/appointments/AppoinmentsContent";
 import MessagesContent from "../components/messages/MessagesContent";
-import PatienListContent from "../components/PatienListContent";
+import PatienListContent from "../components/patientList/PatienListContent";
 import MedicalHistoryContent from "../components/MedicalHistoryContent";
-import Profile from "../components/Profile";
 
 const Dashboard = () => {
   const [activeComponent, setActiveComponent] = useState<string>("dashboard");
@@ -23,7 +22,6 @@ const Dashboard = () => {
     <section>
       <Navbar
         activeComponent={activeComponent}
-        onLinkClick={handleLinkClick}
         navOpened={navOpened}
         setNavOpened={handleNavMenuClick}
       />
@@ -40,7 +38,6 @@ const Dashboard = () => {
           {activeComponent === "messages" && <MessagesContent />}
           {activeComponent === "patient list" && <PatienListContent />}
           {activeComponent === "medical history" && <MedicalHistoryContent />}
-          {activeComponent === "profile" && <Profile />}
           {/* <h1>user : {user?.username || user?.email}</h1>
         <button onClick={() => handleLogout()}>logout</button>
         <a className="block" href="/login">

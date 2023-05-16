@@ -8,12 +8,10 @@ import { useState } from "react";
 const Navbar = ({
   navOpened,
   setNavOpened,
-  onLinkClick,
   activeComponent,
 }: {
   navOpened: boolean;
   setNavOpened: (status: boolean) => void;
-  onLinkClick: (component: string) => void;
   activeComponent: string;
 }) => {
   const [dropDownOpen, setDropdownOpen] = useState(false);
@@ -25,7 +23,7 @@ const Navbar = ({
   };
 
   return (
-    <div className="flex items-center px-3 md:px-12 justify-between py-6 border-b-2">
+    <div className="flex items-center px-3 md:px-12 justify-between py-2 border-b-2">
       <a className="hidden md:block md:pb-6" href="/dashboard">
         <img src="assets/logo.svg" alt="logo" />
       </a>
@@ -70,16 +68,16 @@ const Navbar = ({
                 alt="photo profile"
               />
             ) : (
-              <p></p>
+              <p>{user.username} </p>
             )}
             {dropDownOpen && (
               <div
                 className="absolute bottom-[-150px] right-0 flex flex-col gap-3 w-[200px] capitalize bg-white 
-              shadow-lg border rounded-md p-6"
+              shadow-lg border rounded-md z-10 p-6"
               >
-                <p onClick={() => onLinkClick("profile")} className="border-b">
+                <a href="/profile" className="border-b">
                   profile
-                </p>
+                </a>
                 <button className="btn-outline" onClick={handleLogout}>
                   log out
                 </button>
