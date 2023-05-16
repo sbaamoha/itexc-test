@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import { routes } from "./routes";
 
@@ -8,13 +8,13 @@ import { routes } from "./routes";
 function App() {
   return (
     <>
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           {routes.map(({ path, component }, i) => (
             <Route key={i} path={path} Component={component} />
           ))}
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </>
   );
 }

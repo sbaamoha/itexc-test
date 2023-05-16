@@ -36,7 +36,7 @@ const DashboardContent = () => {
     if (data) {
       dispatch(setAppointments(data));
     }
-  }, [data]);
+  }, [data, dispatch]);
 
   if (isLoading) return <div>Loading ...</div>;
   if (error) return <div>error has occured </div>;

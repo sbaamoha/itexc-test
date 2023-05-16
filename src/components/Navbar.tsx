@@ -27,14 +27,14 @@ const Navbar = ({
   return (
     <div className="flex items-center px-3 md:px-12 justify-between py-6 border-b-2">
       <a className="hidden md:block md:pb-6" href="/dashboard">
-        <img src="/assets/logo.svg" alt="logo" />
+        <img src="assets/logo.svg" alt="logo" />
       </a>
       <div>
         {!navOpened && (
           <button className="md:hidden" onClick={() => setNavOpened(true)}>
             <img
               className="cursor-pointer"
-              src="/assets/menu.svg"
+              src="assets/menu.svg"
               alt="menu icon"
             />
           </button>
@@ -49,12 +49,12 @@ const Navbar = ({
         <div className="flex gap-3">
           <img
             className="cursor-pointer hidden md:block"
-            src="/assets/notification.svg"
+            src="assets/notification.svg"
             alt="notification icon"
           />
           <img
             className="cursor-pointer"
-            src="/assets/setting.svg"
+            src="assets/setting.svg"
             alt="settings icon"
           />
         </div>

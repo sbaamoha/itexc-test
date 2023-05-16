@@ -25,7 +25,7 @@ const Login = () => {
     if (user) {
       navigate("/dashboard");
     }
-  }, []);
+  }, [navigate, user]);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.length || !password.length) {
@@ -48,7 +48,7 @@ const Login = () => {
         <div className="px-6">
           <h1 className="flex items-center gap-3 text-xl md:text-4xl text-softBlue">
             Welcome To Healthy 24
-            <img src="/assets/excellentIcon.svg" alt="hello" />
+            <img src="assets/excellentIcon.svg" alt="hello" />
           </h1>
           <p className="text-md mt-3 text-main">
             Let’s Enter your data to continue use healthy 24 services
@@ -100,11 +100,15 @@ const Login = () => {
                 onClick={() => {
                   loginWithGoogle()
                     .then((user) => {
-                      dispatch(login({ user }));
-                      Cookies.set("user", JSON.stringify(user), {
-                        expires: 1,
-                      });
-                      navigate("/dashboard");
+                      if (user?.email) {
+                        dispatch(login({ user }));
+                        Cookies.set("user", JSON.stringify(user), {
+                          expires: 1,
+                        });
+                        navigate("/dashboard");
+                      } else {
+                        toast.error("something went wrong");
+                      }
                     })
                     .catch((error) => {
                       toast.error(error.message);
@@ -120,11 +124,15 @@ const Login = () => {
                 onClick={() => {
                   loginWithFacebook()
                     .then((user) => {
-                      dispatch(login({ user }));
-                      Cookies.set("user", JSON.stringify(user), {
-                        expires: 1,
-                      });
-                      navigate("/dashboard");
+                      if (user?.email) {
+                        dispatch(login({ user }));
+                        Cookies.set("user", JSON.stringify(user), {
+                          expires: 1,
+                        });
+                        navigate("/dashboard");
+                      } else {
+                        toast.error("Something went wrong");
+                      }
                     })
                     .catch((error) => {
                       toast.error(error.message);

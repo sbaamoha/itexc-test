@@ -35,7 +35,7 @@ const MessagesContent = () => {
     if (data) {
       dispatch(setMessages(data));
     }
-  }, [data]);
+  }, [data, dispatch]);
 
   if (isLoading) return <div>Loading ...</div>;
   if (error) return <div>error has occured </div>;

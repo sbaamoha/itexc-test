@@ -49,7 +49,7 @@ export const registerWithEmailAndPassword = async (
     });
     return true;
   } catch (err) {
-    //console.log(err);
+    console.log(err);
     // alert(err);
     return false;
   }
@@ -76,8 +76,8 @@ export const loginWithFacebook = async () => {
       image: user.photoURL,
     };
   } catch (err) {
-    //console.error(err);
-    alert(err);
+    console.error(err);
+    // alert(err);
   }
 };
 export const loginWithGoogle = async () => {
@@ -101,8 +101,8 @@ export const loginWithGoogle = async () => {
       image: user.photoURL,
     };
   } catch (err) {
-    //console.error(err);
-    alert(err);
+    console.error(err);
+    // alert(err);
   }
 };
 

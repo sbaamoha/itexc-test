@@ -3,12 +3,19 @@ import Doctors from "../components/Doctors";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { registerWithEmailAndPassword } from "../utils/firebase/firebase";
+import {
+  loginWithFacebook,
+  loginWithGoogle,
+  registerWithEmailAndPassword,
+} from "../utils/firebase/firebase";
 import { useSelector } from "react-redux";
 import { RootState } from "../utils/redux/store";
 import { useNavigate } from "react-router-dom";
-
+import { login } from "../utils/redux/slices/authSlice";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 const Signup = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.user?.email);
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
@@ -18,7 +25,7 @@ const Signup = () => {
     if (user) {
       navigate("/dashboard");
     }
-  }, []);
+  }, [navigate, user]);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.length || !password.length) {
@@ -37,7 +44,7 @@ const Signup = () => {
         <div className="px-6">
           <h1 className="flex items-center gap-3 text-xl md:text-4xl text-softBlue">
             Sing up your account
-            <img src="/assets/hello.svg" alt="hello" />
+            <img src="assets/hello.svg" alt="hello" />
           </h1>
           <p className="text-md mt-3 text-main">
             Let’s Enter your data to continue use healthy 24 services
@@ -85,11 +92,51 @@ const Signup = () => {
             <div className="w-full flex flex-col gap-6">
               <button className="btn-fill">Sign Up</button>
               <p className="mx-auto">Or</p>
-              <button type="button" className="btn-outline">
+              <button
+                onClick={() => {
+                  loginWithGoogle()
+                    .then((user) => {
+                      if (user?.email) {
+                        dispatch(login({ user }));
+                        Cookies.set("user", JSON.stringify(user), {
+                          expires: 1,
+                        });
+                        navigate("/dashboard");
+                      } else {
+                        toast.error("something went wrong");
+                      }
+                    })
+                    .catch((error) => {
+                      toast.error(error.message);
+                    });
+                }}
+                type="button"
+                className="btn-outline"
+              >
                 <AiOutlineGoogle className="text-2xl" />
                 Sign Up with Google
               </button>
-              <button type="button" className="btn-outline">
+              <button
+                onClick={() => {
+                  loginWithFacebook()
+                    .then((user) => {
+                      if (user?.email) {
+                        dispatch(login({ user }));
+                        Cookies.set("user", JSON.stringify(user), {
+                          expires: 1,
+                        });
+                        navigate("/dashboard");
+                      } else {
+                        toast.error("something went wrong");
+                      }
+                    })
+                    .catch((error) => {
+                      toast.error(error.message);
+                    });
+                }}
+                type="button"
+                className="btn-outline"
+              >
                 <FaFacebookF className="text-2xl" />
                 Sign Up with Facebook
               </button>
