@@ -67,7 +67,7 @@ const MessagesContent = () => {
             </div>
           </div>
         </div>
-        <div className="hidden md:flex flex-1 mx-2">
+        <div className="hidden md:flex flex-col flex-1 mx-2">
           <div className="flex justify-between items-center border-b pb-6 px-2">
             <div className="flex items-center gap-3">
               <img
