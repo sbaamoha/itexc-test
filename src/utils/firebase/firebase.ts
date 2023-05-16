@@ -112,10 +112,6 @@ export const loginWithEmailAndPassword = async (
 ) => {
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
-    const q = query(collection(db, "users"), where("uid", "==", res.user.uid));
-    const docs = await getDocs(q);
-    const result = docs.docs[0].get("diplayName");
-    console.log(result);
     return {
       username: res.user.displayName,
       email: res.user.email,
