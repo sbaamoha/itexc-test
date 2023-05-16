@@ -13,7 +13,7 @@ import { RiSendPlaneFill } from "react-icons/ri";
 const MessagesContent = () => {
   const messages = useSelector((state: RootState) => state.messages.messages);
   const [search, setSearch] = useState<string>();
-  const [msgOpened, setMsgOpened] = useState<Message | null>(messages[0]);
+  const [msgOpened, setMsgOpened] = useState<Message | null>();
   const dispatch = useDispatch();
 
   const setMsgOpenedHandler = (msg: Message | null) => {
@@ -35,7 +35,8 @@ const MessagesContent = () => {
     if (data) {
       dispatch(setMessages(data));
     }
-  }, [data, dispatch]);
+    setMsgOpened(messages[0]);
+  }, [data, dispatch, messages]);
 
   if (isLoading) return <div>Loading ...</div>;
   if (error) return <div>error has occured </div>;
