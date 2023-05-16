@@ -3,7 +3,7 @@ import { IoIosCalendar } from "react-icons/io";
 import { AiOutlineSwap } from "react-icons/ai";
 import DatePickerInput from "./DatePickerInput";
 import AppointmentsList from "./AppointmentsList";
-import SingleAppointment from "./SingleAppointment";
+// import SingleAppointment from "./SingleAppointment";
 import { useSelector } from "react-redux";
 import { RootState } from "src/utils/redux/store";
 // import Avatar from "../Avatar";
