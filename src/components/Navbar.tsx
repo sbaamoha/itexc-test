@@ -29,7 +29,7 @@ const Navbar = ({
       </a>
       <div>
         {!navOpened && (
-          <button className="md:hidden" onClick={() => setNavOpened(true)}>
+          <button className="md:hidden pt-2" onClick={() => setNavOpened(true)}>
             <img
               className="cursor-pointer"
               src="assets/menu.svg"
@@ -39,7 +39,7 @@ const Navbar = ({
         )}
       </div>
       {!navOpened && (
-        <div className="md:hidden">
+        <div className="md:hidden text-center">
           <h2 className="text-blue text-lg capitalize">{activeComponent}</h2>
         </div>
       )}
@@ -59,7 +59,7 @@ const Navbar = ({
         {user?.email ? (
           <div
             onClick={() => setDropdownOpen((prev) => !prev)}
-            className="relative w-[43px] md:w-[63px] h-[50px] cursor-pointer "
+            className="relative w-[43px] md:w-[63px] h-[50px] flex items-center cursor-pointer "
           >
             {user.image ? (
               <img

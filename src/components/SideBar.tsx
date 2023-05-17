@@ -47,7 +47,7 @@ const SideBar = ({
   return (
     <nav
       className={`absolute ${
-        navOpened ? "left-[0] z-10 bg-white" : "left-[-100%]"
+        navOpened ? "left-0 z-10 bg-white" : "left-[-100%]"
       } md:relative md:left-0 ${
         hidden && "md:hidden"
       } flex flex-col gap-12 border-r-2 px-6 py-6 h-[100vh] transition-all`}
@@ -55,7 +55,10 @@ const SideBar = ({
       {navOpened && (
         <>
           <div className="absolute top-[-65px] left-2 flex items-center">
-            <button className="md:hidden" onClick={() => setNavOpened(false)}>
+            <button
+              className="md:hidden mx-2"
+              onClick={() => setNavOpened(false)}
+            >
               <img
                 className="w-[33px] cursor-pointer"
                 src="/assets/menuClose.svg"
@@ -71,7 +74,7 @@ const SideBar = ({
           <div className="flex flex-col gap-2 md:hidden">
             <div className="flex items-center gap-2">
               {user?.email ? (
-                <div className=" w-full h-[100px] cursor-pointer flex items-center gap-3">
+                <div className="w-[63px] h-[100px] cursor-pointer flex items-center gap-3">
                   {user.image ? (
                     <img
                       className="border rounded-full"
@@ -79,17 +82,22 @@ const SideBar = ({
                       alt="photo profile"
                     />
                   ) : (
-                    <p></p>
+                    <p>{user.username} </p>
                   )}
-                  <p onClick={() => onLinkClick("profile")} className="text-sm">
+                  <button
+                    onClick={() => onLinkClick("profile")}
+                    className="btn-outline px-3 text-sm"
+                  >
                     Edit My Profile
-                  </p>
+                  </button>
                 </div>
               ) : (
-                <a href="/login">login</a>
+                <a className="btn-outline px-2" href="/login">
+                  login
+                </a>
               )}
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 my-6">
               <img
                 className="cursor-pointer"
                 src="/assets/notification.svg"
