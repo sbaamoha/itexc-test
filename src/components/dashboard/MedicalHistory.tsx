@@ -5,6 +5,7 @@ import { RootState } from "../../utils/redux/store";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteAppointmentFunc } from "../../lib/apis";
 import { deleteAppointment } from "../../utils/redux/slices/appointmentsSlice";
+import { dateExtract } from "../../lib/date";
 const MedicalHistory = () => {
   const dispatch = useDispatch();
   const appoints = useSelector(
@@ -106,20 +107,13 @@ const MedicalHistory = () => {
       </table>
       <div>
         {appoints.map((a) => {
-          const dateString = a.date;
-          const dateObj = new Date(dateString);
-
-          const year = dateObj.getFullYear();
-          const month = dateObj.toLocaleString("default", { month: "long" });
-          const day = dateObj.getDate();
-          let hours = dateObj.getHours();
-          const minutes = dateObj.getMinutes();
-          const ampm = hours >= 12 ? "PM" : "AM";
-          hours = hours % 12 || 12;
+          const { year, month, day, ampm, hours, minutes } = dateExtract(
+            a.date
+          );
           return (
             <div className="md:hidden flex flex-col gap-2" key={a.id}>
-              <div className="flex justify-between mb-2">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2 py-2 border-t">
                   <img
                     className="w-[40px] rounded-full"
                     src={a.avatar}

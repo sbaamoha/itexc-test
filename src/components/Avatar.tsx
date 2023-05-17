@@ -3,13 +3,17 @@ const Avatar = ({
   name,
   desc,
 }: {
-  img: string;
-  name: string;
-  desc: string;
+  img: string | undefined;
+  name: string | undefined;
+  desc: string | undefined;
 }) => {
   return (
     <div className="flex items-center gap-2">
-      <img className="w-[30px] h-[30px] rounded-full  " src={img} alt={name} />
+      <img
+        className="w-[30px] h-[30px] md:w-[60px] md:h-[60px] rounded-full  "
+        src={img}
+        alt={name}
+      />
       <div>
         <h2 className="text-sm">{name} </h2>
         <p className="text-main text-sm">{desc} </p>

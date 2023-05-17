@@ -9,26 +9,30 @@ import SinglePatient from "./SinglePatient";
 const PatienListContent = () => {
   const [search, setSearch] = useState<string>();
   const [patient, setPatient] = useState<Appointment | null>();
+
   const appointments = useSelector(
     (state: RootState) => state.appointment.appointments
   );
+
   const setPatientFunc = (patientObj: Appointment | null) => {
     setPatient(patientObj);
   };
+
   const searchAppoints = useMemo(() => {
     if (!search) return appointments;
     return appointments.filter((a) =>
       a.name.toLowerCase().includes(search.toLowerCase())
     );
   }, [search, appointments]);
+
   return (
     <div className="capitalize relative">
       {patient?.name.length && (
         <SinglePatient patient={patient} setPatient={setPatientFunc} />
       )}
-      <h2 className="text-2xl text-softBlue">patient list</h2>
-      <div className="flex justify-between">
-        <div className="flex-1 relative">
+      <h2 className="text-lg md:text-2xl text-softBlue">patient list</h2>
+      <div className="flex justify-between mt-2 md:my-2">
+        <div className="flex-1 relative mx-2">
           <CiSearch className="absolute left-5 top-3 text-2xl opacity-80" />
           <input
             className="w-full md:w-1/2 rounded-lg py-3 px-12 outline-none border mr-6"

@@ -9,7 +9,7 @@ const SinglePatient = ({
     <div className="absolute flex flex-col md:flex-row gap-6 w-[100%] h-[100%] z-10 bg-white ">
       <button
         onClick={() => setPatient(null)}
-        className="absolute right-0 md:right-5 md:top-6 top-10 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-lg"
+        className="absolute -right-1  md:right-5 md:top-6 top-11 px-3 py-1 hover:bg-gray-200 rounded-lg"
       >
         X
       </button>
@@ -77,10 +77,10 @@ const SinglePatient = ({
         <h2 className="text-2xl text-softBlue">past notes appoinment</h2>
         <ul className="my-3 flex flex-col gap-6">
           <li>
-            <li className="flex items-center gap-3">
+            <span className="flex items-center gap-3">
               <img className="w-[20px]" src="/assets/circle.svg" alt="ss" />
               <p className="text-lg">{patient.date.split("T")[0]} </p>
-            </li>
+            </span>
             <div className="ml-10 mt-2">
               <h3 className="text-lg">diabetes control appointment</h3>
               <p className="text-main my-2">

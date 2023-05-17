@@ -9,8 +9,9 @@ import { auth } from "../utils/firebase/firebase";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router";
 import { changeUserCredentials } from "../utils/redux/slices/authSlice";
+import SideBar from "../components/SideBar";
 const Profile = () => {
-  const [activeComponent] = useState<string>("profile");
+  const [activeComponent, setActiveComponent] = useState<string>("profile");
   const [fullname, setFullname] = useState<string>("");
   const [navOpened, setNavOpened] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
@@ -28,6 +29,9 @@ const Profile = () => {
         });
     }
   };
+  const handleLinkClick = (component: string) => {
+    setActiveComponent(component);
+  };
 
   const handleNavMenuClick = (status: boolean) => {
     setNavOpened(status);
@@ -42,152 +46,185 @@ const Profile = () => {
         navOpened={navOpened}
         setNavOpened={handleNavMenuClick}
       />
-
-      <section className="p-6 rounded-xl">
-        <section className="relative bg-white border pb-6 rounded-2xl my-6">
-          <img
-            className=" rounded-t-2xl"
-            src="/assets/coverPhoto.svg"
-            alt="cover"
-          />
-          <div className="w-[90px] md:w-[150px] absolute left-5 top-[30%] md:top-[30%] rounded-full overflow-hidden ">
-            {user?.image ? (
-              <img src={user.image} alt="profile photo" />
-            ) : (
-              <img src="/assets/profile.svg" alt="profile photo" />
-            )}
-          </div>
-          <br />
-          <div className="flex justify-between ml-5 md:ml-[100px] ">
-            <div className="mt-12">
-              <h2 className="text-lg md:text-2xl">dr. {user?.username} </h2>
-              <br />
-              <p className="text-main">
-                Specialist of skin surgery in Moustafa bacha
-              </p>
-              <button className="flex font-bold items-center gap-2 p-2 my-3 text-softBlue rounded-xl border bg-gray-100">
-                <GoLocation />
-                <p>Alger, Algeria</p>
-              </button>
-            </div>
-            <div className="flex-1 flex items-start justify-end mx-3">
-              <button className="flex items-center gap-2 border p-3 text-softBlue hover:opacity-80 rounded-lg">
-                <BsFillPencilFill />
-                <p className="hidden md:inline">Edit profile</p>
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section className="p-3 rounded-xl border">
-          <h2 className="text-2xl text-softBlue">Profile description</h2>
-          <br />
-          <p className="text-main">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, quae!
-          </p>
-          <br />
-
-          <p className="text-main">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, to:
-          </p>
-          <br />
-          <ul className="ml-10 list-disc text-main">
-            <li>Lorem ipsum dolor sit amet.</li>
-            <li>Lorem ipsum dolor sit amet.</li>
-            <li>Lorem ipsum dolor sit amet.</li>
-            <li>Lorem ipsum dolor sit amet.</li>
-          </ul>
-        </section>
-
-        <section className="p-3 my-12 rounded-xl border px-6">
-          <h2 className="text-2xl text-softBlue">Edit Profile</h2>
-          <p className="text-main">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
-            velit!
-          </p>
-          <br />
-          <h2 className="text-xl text-softBlue">Cover</h2>
-          <div className="my-6 ">
+      <section className="flex">
+        <SideBar
+          hidden
+          setNavOpened={handleNavMenuClick}
+          navOpened={navOpened}
+          onLinkClick={handleLinkClick}
+          activeComponent={activeComponent}
+        />
+        <div className="flex-1 p-6 rounded-xl">
+          <section className="relative bg-white border pb-6 rounded-2xl my-6">
             <img
-              className="rounded-xl "
+              className="rounded-t-2xl"
               src="/assets/coverPhoto.svg"
               alt="cover"
             />
-          </div>
-          <h2 className="text-2xl text-softBlue">Profile picture</h2>
-          <br />
-          <div className="flex items-center gap-3">
-            <div className="w-[90px] md:w-[150px] rounded-full">
+            <div className="w-[90px] md:w-[150px] absolute left-5 top-[20%] lg:top-[40%] rounded-full overflow-hidden">
               {user?.image ? (
-                <img src={user.image} alt="profile photo" />
+                <img
+                  className="rounded-full"
+                  src={user.image}
+                  alt="profile photo"
+                />
               ) : (
-                <img src="/assets/profile.svg" alt="profile photo" />
+                <img
+                  className="rounded-full"
+                  src="/assets/profile.svg"
+                  alt="profile photo"
+                />
               )}
             </div>
-            <div className="flex items-center gap-1">
-              <button className="btn-fill px-3">Change photo</button>
-              <button className="btn-outline px-3">Remove</button>
+            <br />
+            <div className="flex justify-between ml-5 md:ml-[100px] ">
+              <div className="mt-12">
+                <h2 className="text-lg md:text-2xl">dr. {user?.username} </h2>
+                <br />
+                <p className="text-main">
+                  Specialist of skin surgery in Moustafa bacha
+                </p>
+                <button className="flex font-bold items-center gap-2 p-2 my-3 text-softBlue rounded-xl border bg-gray-100">
+                  <GoLocation />
+                  <p>Alger, Algeria</p>
+                </button>
+              </div>
+              <div className="flex-1 flex items-start justify-end mx-3">
+                <button className="flex items-center gap-2 border p-3 text-softBlue hover:opacity-80 rounded-lg">
+                  <BsFillPencilFill />
+                  <p className="hidden md:inline">Edit profile</p>
+                </button>
+              </div>
             </div>
-          </div>
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-6 w-[90%] mx-auto  my-12"
-          >
-            <div className="flex flex-col gap-3">
-              <label
-                className="text-xl font-bold text-softBlue"
-                htmlFor="fullName"
-              >
-                Full Name
-              </label>
-              <input
-                id="fullName"
-                type="text"
-                placeholder="Enter full name"
-                name="fullname"
-                value={fullname}
-                onChange={(e) => setFullname(e.target.value)}
-                className="outline-none"
+          </section>
+
+          <section className="p-3 rounded-xl border">
+            <h2 className="text-2xl text-softBlue">Profile description</h2>
+            <br />
+            <p className="text-main">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi,
+              quae!
+            </p>
+            <br />
+
+            <p className="text-main">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, to:
+            </p>
+            <br />
+            <ul className="ml-10 list-disc text-main">
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+              <li>Lorem ipsum dolor sit amet.</li>
+            </ul>
+          </section>
+
+          <section className="p-3 my-12 rounded-xl border px-6">
+            <h2 className="text-2xl text-softBlue">Edit Profile</h2>
+            <p className="text-main">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam,
+              velit!
+            </p>
+            <br />
+            <h2 className="text-xl text-softBlue">Cover</h2>
+            <div className="my-6 ">
+              <img
+                className="rounded-xl "
+                src="/assets/coverPhoto.svg"
+                alt="cover"
               />
             </div>
-            <div className="flex flex-col gap-3">
-              <label
-                className="text-xl font-bold text-softBlue"
-                htmlFor="speciality"
-              >
-                Speciality
-              </label>
-              <input
-                id="speciality"
-                type="text"
-                placeholder="Enter speciality"
-                name="speciality"
-                className="outline-none"
-              />
+            <h2 className="text-2xl text-softBlue">Profile picture</h2>
+            <br />
+            <div className="flex items-center gap-2">
+              <div className="w-[90px] md:w-[150px] rounded-full">
+                {user?.image ? (
+                  <img
+                    className="rounded-full border"
+                    src={user.image}
+                    alt="profile photo"
+                  />
+                ) : (
+                  <img
+                    className="rounded-full border"
+                    src="/assets/profile.svg"
+                    alt="profile photo"
+                  />
+                )}
+              </div>
+              <div className="flex items-center gap-1">
+                <button className="btn-fill px-3">
+                  {/* <input
+                    type="file"
+                    placeholder="Change photo"
+                    className="bg-transparent"
+                  /> */}
+                  Change photo
+                </button>
+
+                <button className="btn-outline px-3">Remove</button>
+              </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <label
-                className="text-xl font-bold text-softBlue"
-                htmlFor="description"
-              >
-                Description
-              </label>
-              <input
-                id="description"
-                type="text"
-                placeholder="Enter description"
-                name="description"
-                className="outline-none"
-              />
-            </div>
-            <div className="flex justify-end items-end gap-3">
-              <button type="button" className="btn-outline px-2">
-                Cancel
-              </button>
-              <button className="btn-fill px-2">Save Changes</button>
-            </div>
-          </form>
-        </section>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-6 w-[90%] mx-auto  my-12"
+            >
+              <div className="flex flex-col gap-3">
+                <label
+                  className="text-xl font-bold text-softBlue"
+                  htmlFor="fullName"
+                >
+                  Full Name
+                </label>
+                <input
+                  id="fullName"
+                  type="text"
+                  placeholder="Enter full name"
+                  name="fullname"
+                  value={fullname}
+                  onChange={(e) => setFullname(e.target.value)}
+                  className="outline-none"
+                />
+              </div>
+              <div className="flex flex-col gap-3">
+                <label
+                  className="text-xl font-bold text-softBlue"
+                  htmlFor="speciality"
+                >
+                  Speciality
+                </label>
+                <input
+                  id="speciality"
+                  type="text"
+                  placeholder="Enter speciality"
+                  name="speciality"
+                  className="outline-none"
+                />
+              </div>
+              <div className="flex flex-col gap-3">
+                <label
+                  className="text-xl font-bold text-softBlue"
+                  htmlFor="description"
+                >
+                  Description
+                </label>
+                <input
+                  id="description"
+                  type="text"
+                  placeholder="Enter description"
+                  name="description"
+                  className="outline-none"
+                />
+              </div>
+              <div className="flex justify-end items-end gap-3">
+                <button type="button" className="btn-outline px-2">
+                  Cancel
+                </button>
+                <button className="btn-fill px-2">Save Changes</button>
+              </div>
+            </form>
+          </section>
+        </div>
       </section>
     </main>
   );

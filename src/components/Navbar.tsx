@@ -59,7 +59,7 @@ const Navbar = ({
         {user?.email ? (
           <div
             onClick={() => setDropdownOpen((prev) => !prev)}
-            className="relative w-[63px] h-[50px] cursor-pointer "
+            className="relative w-[43px] md:w-[63px] h-[50px] cursor-pointer "
           >
             {user.image ? (
               <img

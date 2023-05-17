@@ -6,23 +6,33 @@ import AppointmentsList from "./AppointmentsList";
 // import SingleAppointment from "./SingleAppointment";
 import { useSelector } from "react-redux";
 import { RootState } from "src/utils/redux/store";
+import AppointmentTable from "./AppointmentTable";
+import SingleAppointment from "./SingleAppointment";
 // import Avatar from "../Avatar";
 const AppoinmentsContent = () => {
   const appointments = useSelector(
     (state: RootState) => state.appointment.appointments
   );
-  const [dateBtnOpened, setDateBtnOpened] = useState<boolean>(false);
+  const [dateBtnOpened, setDateBtnOpened] = useState<boolean>(true);
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
+  const [visible, setVisible] = useState(false);
+  const [appointment, setAppointment] = useState<Appointment | null>(null);
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
   };
 
+  const handleSetVisible = (status: boolean) => {
+    setVisible(status);
+  };
+  const handleSetVisibleAppointment = (appointment: Appointment | null) => {
+    setAppointment(appointment);
+  };
   return (
     <div className="capitalize">
       <div className="flex justify-between">
-        <h2 className="text-2xl text-softBlue">appoinments</h2>
+        <h2 className="text-lg md:text-2xl text-softBlue">appoinments</h2>
         <div className="flex items-center">
           <DatePickerInput
             selected={selectedDate}
@@ -47,39 +57,18 @@ const AppoinmentsContent = () => {
         </div>
       </div>
       <div className="my-3">
-        {/* <table className="">
-          <thead className="border-b p-2">
-            <tr className="flex items-center ">
-              <th>pst</th>
-              {appointments.map((appointment) => {
-                return (
-                  <th className="border-x p-2 ">
-                    <Avatar
-                      name={appointment.name}
-                      desc={appointment.desc}
-                      img={appointment.avatar}
-                    />
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {appointments.map((appointment, i) => {
-              return (
-                <tr className="flex items-center">
-                  <td className="text-sm text-main">{i + 3}:00PM </td>
-                  <td className="border-x">
-                    <div className="w-full h-full border-l-8 rounded-r-sm border-blue ">
-                      dr robert{" "}
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table> */}
-
+        {dateBtnOpened && (
+          <AppointmentTable
+            setVisible={handleSetVisible}
+            setAppointment={handleSetVisibleAppointment}
+            appointments={appointments}
+          />
+        )}
+        <SingleAppointment
+          setVisible={handleSetVisible}
+          visible={visible}
+          appointment={appointment}
+        />
         {!dateBtnOpened && <AppointmentsList appointments={appointments} />}
       </div>
     </div>

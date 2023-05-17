@@ -1,17 +1,13 @@
+import { dateExtract } from "../../lib/date";
+
 const Message = ({
   msg,
   openThisMsg,
 }: {
   msg: Message;
-  openThisMsg: (msg: Message | null) => void;
+  openThisMsg: (msg: Message) => void;
 }) => {
-  const dateString = msg.date;
-  const dateObj = new Date(dateString);
-
-  let hours = dateObj.getHours();
-  const minutes = dateObj.getMinutes();
-  const ampm = hours >= 12 ? "PM" : "AM";
-  hours = hours % 12 || 12;
+  const { ampm, hours, minutes } = dateExtract(msg.date);
   return (
     <div
       onClick={() => openThisMsg(msg)}

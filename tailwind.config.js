@@ -19,6 +19,7 @@ export default {
         main: "#848fac",
         blue: "#192252",
         softBlue: "#103f74",
+        skyBlue: "#12BDB2",
         success: "#CFFCD4",
         pending: "#FFF7D0",
         borderColor: "#c5d0e6",

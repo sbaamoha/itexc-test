@@ -31,11 +31,13 @@ const navLinks: LinkType[] = [
 ];
 
 const SideBar = ({
+  hidden,
   setNavOpened,
   navOpened,
   onLinkClick,
   activeComponent,
 }: {
+  hidden?: boolean;
   setNavOpened: (status: boolean) => void;
   onLinkClick: (component: string) => void;
   activeComponent: string;
@@ -46,7 +48,9 @@ const SideBar = ({
     <nav
       className={`absolute ${
         navOpened ? "left-[0] z-10 bg-white" : "left-[-100%]"
-      } md:relative md:left-0 flex flex-col gap-12 border-r-2 px-6 py-6 h-[100vh] transition-all`}
+      } md:relative md:left-0 ${
+        hidden && "md:hidden"
+      } flex flex-col gap-12 border-r-2 px-6 py-6 h-[100vh] transition-all`}
     >
       {navOpened && (
         <>

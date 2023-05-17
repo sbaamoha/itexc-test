@@ -25,4 +25,7 @@ body {
   h2 {
     font-weight: 600;
   }
+  ::-webkit-scrollbar {
+    width: 0.5rem; /* Adjust the width of the scrollbar */
+  }
 }

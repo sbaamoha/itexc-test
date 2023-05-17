@@ -12,6 +12,7 @@ interface Appointment {
   date: string;
   accepted: boolean;
   desc: string;
+  doctor: string;
 }
 
 interface TDashboardContent {
