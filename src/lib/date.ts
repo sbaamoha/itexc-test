@@ -3,7 +3,7 @@ export function dateExtract(date: string) {
   const dateObj = new Date(dateString);
 
   const year = dateObj.getFullYear();
-  const month = dateObj.toLocaleString("default", { month: "long" });
+  const month = dateObj.getMonth() + 1;
   const day = dateObj.getDate();
   let hours: string | number = dateObj.getHours().toString().padStart(2, "0");
   const minutes = dateObj.getMinutes();

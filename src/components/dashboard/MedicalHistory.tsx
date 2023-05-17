@@ -36,7 +36,7 @@ const MedicalHistory = () => {
       <h2 className="text-3xl px-2 py-3 pb-6 text-softBlue">medical history</h2>
       <table className="hidden md:flex flex-col justify-between gap-3 w-full">
         <thead className="w-full">
-          <tr className="flex flex-col md:flex-row items-start gap-10 justify-between bg-gray-100 p-3 rounded-lg">
+          <tr className="grid grid-cols-6  items-start gap-10 justify-between bg-gray-100 p-3 rounded-lg">
             <th>patient</th>
             <th>appointment</th>
             <th>date</th>
@@ -47,22 +47,15 @@ const MedicalHistory = () => {
         </thead>
         <tbody className="w-full">
           {appoints.map((a) => {
-            const dateString = a.date;
-            const dateObj = new Date(dateString);
-            const year = dateObj.getFullYear();
-            const month = dateObj.getMonth() + 1;
-            const day = dateObj.getDate();
-            let hours = dateObj.getHours();
-            const minutes = dateObj.getMinutes();
-            const ampm = hours >= 12 ? "PM" : "AM";
-            hours = hours % 12 || 12;
-
+            const { year, month, day, hours, minutes, ampm } = dateExtract(
+              a.date
+            );
             return (
               <tr
-                className="flex flex-col md:flex-row justify-between items-center mb-2 "
+                className="grid grid-cols-6 items-center text-center mb-2 "
                 key={a.id}
               >
-                <td className="flex items-center">
+                <td className="flex items-center px-3 ">
                   <img
                     className="w-[33px] mr-2 rounded-full"
                     src={a.avatar}
@@ -89,7 +82,7 @@ const MedicalHistory = () => {
                     </p>
                   )}{" "}
                 </td>
-                <td className="flex gap-2">
+                <td className="flex gap-2 justify-end">
                   <button className="rounded-full hover:bg-gray-200 p-2">
                     <AiOutlineEyeInvisible className="text-lg" />
                   </button>

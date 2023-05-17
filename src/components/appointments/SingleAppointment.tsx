@@ -15,7 +15,7 @@ const SingleAppointment = ({
   return (
     <div
       className={`absolute w-[90%] md:w-1/3 bg-white border rounded-sm p-6 transition-all capitalize ${
-        visible ? "-right-16 md:right-0 top-0 bottom-0" : "hidden"
+        visible ? "-right-16 md:right-0 top-0 -bottom-14 md:bottom-0" : "hidden"
       }`}
     >
       <div className="p-2 py-4 my-3 flex items-center justify-between border-b">
