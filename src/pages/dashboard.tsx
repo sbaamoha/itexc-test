@@ -32,7 +32,7 @@ const Dashboard = () => {
           onLinkClick={handleLinkClick}
           activeComponent={activeComponent}
         />
-        <div className="flex-1 p-3">
+        <div className="flex-1 border-l-2 p-3">
           {activeComponent === "dashboard" && <DashboardContent />}
           {activeComponent === "appointment" && <AppoinmentsContent />}
           {activeComponent === "messages" && <MessagesContent />}

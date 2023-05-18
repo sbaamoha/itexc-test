@@ -58,7 +58,7 @@ const MessagesContent = () => {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-            <div className="border-r my-2">
+            <div className="border-r h-[68vh] overflow-y-auto border-b my-2">
               {searchMessages.map((msg) => {
                 return (
                   <Message

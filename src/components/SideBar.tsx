@@ -21,11 +21,11 @@ const SideBar = ({
   const user = useSelector((state: RootState) => state.auth.user);
   return (
     <nav
-      className={`absolute ${
+      className={`absolute md:h-[60vh] ${
         navOpened ? "left-0 z-10 bg-white" : "left-[-100%]"
       } md:relative md:left-0 ${
         hidden && "md:hidden"
-      } flex flex-col gap-12 border-r-2 px-6 py-6 h-[100vh] transition-all`}
+      } flex flex-col gap-12 px-6 py-6 h-[100vh] transition-all`}
     >
       {navOpened && (
         <>

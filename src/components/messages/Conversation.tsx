@@ -61,7 +61,7 @@ const Conversation = ({ msgOpened }: TConversation) => {
   }, [messages]);
 
   return (
-    <div className="hidden md:flex h-screen flex-col flex-1 mx-2">
+    <div className="hidden md:flex flex-col flex-1 mx-2">
       <div className="flex justify-between items-center pb-6 px-2 border-b">
         <div className="flex items-center gap-3">
           <img
@@ -79,7 +79,7 @@ const Conversation = ({ msgOpened }: TConversation) => {
           <SlOptions className="cursor-pointer" />
         </div>
       </div>
-      <div className="p-4 h-screen border-b">
+      <div className="p-2">
         <div
           className="flex flex-col h-[60vh] space-y-4 overflow-y-auto"
           ref={messagesContainerRef}
@@ -87,7 +87,7 @@ const Conversation = ({ msgOpened }: TConversation) => {
           {messages.map((message, index) => (
             <div
               key={index}
-              className={` h-[10vh] flex justify-${
+              className={`h-[10vh] flex justify-${
                 message.sender === "me" ? "end" : "start"
               }`}
             >
@@ -121,7 +121,7 @@ const Conversation = ({ msgOpened }: TConversation) => {
             </div>
           ))}
         </div>
-        <div className="flex mt-6">
+        <div className="flex mt-12">
           <input
             type="text"
             value={newMessage}
@@ -137,62 +137,6 @@ const Conversation = ({ msgOpened }: TConversation) => {
           </button>
         </div>
       </div>
-
-      {/* <div className="my-3">
-            <div>
-              <h3 className="text-center text-softBlue">
-                {msgOpened?.date.split("T")[0]}
-              </h3>
-              <div className="flex items-center gap-2">
-                <img
-                  className="w-[50px] rounded-full "
-                  src={msgOpened?.avatar}
-                  alt={msgOpened?.name}
-                />
-                <div className="p-6 rounded-b-lg rounded-tr-lg bg-gray-100">
-                  <p className="">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Adipisci temporibus optio vol dicta!
-                  </p>
-                </div>
-              </div>
-              <span className="ml-16">12:48 PM</span>
-            </div>
-            <div>
-              <div className="w-1/2 ml-auto bg-blue p-6 rounded-t-lg rounded-bl-lg text-white">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. At
-                quisquam molestiae obcaecati ullam dolores nihil ad sed
-                aspernatur blanditiis architecto.
-              </div>
-              <div className="absolute right-7">12:51 PM</div>
-            </div>
-            <div className="my-6">
-              <div className="flex items-center gap-2">
-                <img
-                  className="w-[50px] rounded-full "
-                  src={msgOpened?.avatar}
-                  alt={msgOpened?.name}
-                />
-                <div className="p-6 rounded-b-lg rounded-tr-lg bg-gray-100">
-                  <p className="">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Adipisci temporibus optio vol dicta!
-                  </p>
-                </div>
-              </div>
-              <span className="ml-16">12:55 PM</span>
-            </div>
-          </div>
-          <div className="border-t py-6 ">
-            <div className="flex items-center w-full">
-              <input
-                className="w-full rounded-lg py-3 px-12 outline-none border mr-6"
-                placeholder="Write something here"
-                type="text"
-              />
-              <RiSendPlaneFill className="text-2xl cursor-pointer" />
-            </div>
-          </div> */}
     </div>
   );
 };
