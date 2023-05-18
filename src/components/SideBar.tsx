@@ -1,34 +1,15 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { RootState } from "src/utils/redux/store";
-type LinkType = {
-  url: string;
-  name: string;
-  img: string;
-};
-const navLinks: LinkType[] = [
-  {
-    url: "dashboard",
-    name: "dashboard",
-    img: "assets/dashboard.svg",
-  },
-  {
-    url: "#patient-list",
-    name: "patient list",
-    img: "assets/patientList.svg",
-  },
-  { url: "#messages", name: "messages", img: "assets/messages.svg" },
-  {
-    url: "#appointment",
-    name: "appointment",
-    img: "assets/appointment.svg",
-  },
-  {
-    url: "#medical-history",
-    name: "medical history",
-    img: "assets/medical-history.svg",
-  },
-];
+import { navLinks } from "../lib/links";
+import { RootState } from "../utils/redux/store";
+
+interface TSideBar {
+  hidden?: boolean;
+  setNavOpened: (status: boolean) => void;
+  onLinkClick: (component: string) => void;
+  activeComponent: string;
+  navOpened: boolean;
+}
 
 const SideBar = ({
   hidden,
@@ -36,13 +17,7 @@ const SideBar = ({
   navOpened,
   onLinkClick,
   activeComponent,
-}: {
-  hidden?: boolean;
-  setNavOpened: (status: boolean) => void;
-  onLinkClick: (component: string) => void;
-  activeComponent: string;
-  navOpened: boolean;
-}) => {
+}: TSideBar) => {
   const user = useSelector((state: RootState) => state.auth.user);
   return (
     <nav

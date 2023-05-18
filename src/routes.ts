@@ -11,9 +11,4 @@ export const routes: RoutesType = [
   { path: "/signup", component: Signup },
   { path: "/dashboard", component: Dashboard },
   { path: "/forgot-password", component: ForgotPassword },
-
-  // { path: "/patient-list", component: ForgotPassword },
-  // { path: "/messages", component: ForgotPassword },
-  // { path: "/appointment", component: ForgotPassword },
-  // { path: "/medical-history", component: ForgotPassword },
 ];

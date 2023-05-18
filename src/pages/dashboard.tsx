@@ -38,11 +38,6 @@ const Dashboard = () => {
           {activeComponent === "messages" && <MessagesContent />}
           {activeComponent === "patient list" && <PatienListContent />}
           {activeComponent === "medical history" && <MedicalHistoryContent />}
-          {/* <h1>user : {user?.username || user?.email}</h1>
-        <button onClick={() => handleLogout()}>logout</button>
-        <a className="block" href="/login">
-          login
-        </a> */}
         </div>
       </div>
     </section>

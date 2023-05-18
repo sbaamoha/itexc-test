@@ -2,11 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { HiOutlineVideoCamera } from "react-icons/hi";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { SlOptions } from "react-icons/sl";
+
+interface TConversation {
+  msgOpened: Message | null;
+}
 interface NewMessage {
   text: string;
   sender: string;
 }
-const Conversation = ({ msgOpened }: { msgOpened: Message | null }) => {
+
+const Conversation = ({ msgOpened }: TConversation) => {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const [messages, setMessagesComponent] = useState<NewMessage[]>([

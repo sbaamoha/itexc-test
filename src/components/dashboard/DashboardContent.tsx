@@ -32,6 +32,7 @@ const DashboardContent = () => {
     queryKey: ["appointments"],
     queryFn: getAppointments,
   });
+
   useEffect(() => {
     if (data) {
       dispatch(setAppointments(data));
@@ -40,6 +41,7 @@ const DashboardContent = () => {
 
   if (isLoading) return <div>Loading ...</div>;
   if (error) return <div>{`error has occured : ${error}`} </div>;
+
   return (
     <div>
       <h2 className="text-3xl pb-6 text-softBlue">Welcome back Dr. Taylor!</h2>

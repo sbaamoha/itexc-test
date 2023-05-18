@@ -1,14 +1,16 @@
 import { dateExtract } from "../../lib/date";
 
+interface TAppointmentTable {
+  appointments: Appointment[];
+  setAppointment: (appointment: Appointment | null) => void;
+  setVisible: (status: boolean) => void;
+}
+
 const AppointmentTable = ({
   appointments,
   setAppointment,
   setVisible,
-}: {
-  appointments: Appointment[];
-  setAppointment: (appointment: Appointment | null) => void;
-  setVisible: (status: boolean) => void;
-}) => {
+}: TAppointmentTable) => {
   const workHours: string[] = [
     "08:00",
     "09:00",
@@ -20,6 +22,7 @@ const AppointmentTable = ({
     "03:00",
     "04:00",
   ];
+
   return (
     <div className="relative">
       <div className="overflow-x-auto p-4">

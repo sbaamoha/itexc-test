@@ -30,6 +30,7 @@ const MessagesContent = () => {
     queryKey: ["messages"],
     queryFn: getMessages,
   });
+
   useEffect(() => {
     if (data) {
       dispatch(setMessages(data));
@@ -39,6 +40,7 @@ const MessagesContent = () => {
 
   if (isLoading) return <div>Loading ...</div>;
   if (error) return <div>error has occured </div>;
+
   return (
     <div className="capitalize">
       <div className="flex">

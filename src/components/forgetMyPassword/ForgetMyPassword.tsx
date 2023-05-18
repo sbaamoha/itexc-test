@@ -6,12 +6,11 @@ const ForgetMyPassword = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Here, you can implement the logic to verify the code entered by the user
-    // You can make an API request or perform any necessary operations
-    // For simplicity, let's just display a success message
+
     setMessage("Code verification successful");
     setCode("");
   };
+
   return (
     <div className="flex justify-center mx-auto items-center h-screen">
       <form

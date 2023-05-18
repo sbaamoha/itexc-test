@@ -1,13 +1,12 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const DatePickerInput = ({
-  handleDateChange,
-  selected,
-}: {
+interface TDatePickerInput {
   handleDateChange: (date: Date) => void;
   selected: Date | null;
-}) => {
+}
+
+const DatePickerInput = ({ handleDateChange, selected }: TDatePickerInput) => {
   return (
     <div className="mx-1 md:mx-2">
       <DatePicker

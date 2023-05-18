@@ -7,33 +7,38 @@ import {
   deleteAppointment,
 } from "../../utils/redux/slices/appointmentsSlice";
 
-const AppointmentsList = ({
-  appointments,
-}: {
+interface TAppointmentList {
   appointments: Appointment[];
-}) => {
+}
+
+const AppointmentsList = ({ appointments }: TAppointmentList) => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+
   const deleteMutation = useMutation({
     mutationFn: deleteAppointmentFunc,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["appointments"] });
     },
   });
+
   const acceptMutation = useMutation({
     mutationFn: acceptAppointmentFunc,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["appointments"] });
     },
   });
+
   const handleDeleteAppoint = (appointment: Appointment) => {
     dispatch(deleteAppointment(appointment.id));
     deleteMutation.mutate(appointment);
   };
+
   const handleAcceptAppoint = (appointment: Appointment) => {
     dispatch(acceptAppointment(appointment));
     acceptMutation.mutate({ ...appointment, accepted: true });
   };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
       {appointments

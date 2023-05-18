@@ -16,16 +16,20 @@ import Cookies from "js-cookie";
 
 const Login = () => {
   const user = useSelector((state: RootState) => state.auth.user?.email);
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [rememberMe, setRememberMe] = useState<boolean>(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (user) {
       navigate("/dashboard");
     }
   }, [navigate, user]);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.length || !password.length) {

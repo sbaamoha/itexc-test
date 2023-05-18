@@ -10,12 +10,16 @@ import { toast } from "react-toastify";
 import { Navigate } from "react-router";
 import { changeUserCredentials } from "../utils/redux/slices/authSlice";
 import SideBar from "../components/SideBar";
+
 const Profile = () => {
   const [activeComponent, setActiveComponent] = useState<string>("profile");
   const [fullname, setFullname] = useState<string>("");
   const [navOpened, setNavOpened] = useState(false);
+
   const user = useSelector((state: RootState) => state.auth.user);
+
   const dispatch = useDispatch();
+
   const handleSubmit = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
     if (user?.email) {
@@ -29,6 +33,7 @@ const Profile = () => {
         });
     }
   };
+
   const handleLinkClick = (component: string) => {
     setActiveComponent(component);
   };
@@ -36,9 +41,11 @@ const Profile = () => {
   const handleNavMenuClick = (status: boolean) => {
     setNavOpened(status);
   };
+
   if (!user?.email) {
     return <Navigate to="/login" />;
   }
+
   return (
     <main className="">
       <Navbar

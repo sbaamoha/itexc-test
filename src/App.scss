@@ -1,13 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
-$bg-primary-color: #ffffff;
 $font-size: 16px;
 $font-family: "Poppins", sans-serif;
-$sm-text-color: #848fac;
-$lg-text-color: #192252;
-$btn-color: #103f74;
 $border-color: #c5d0e6;
-$sm-weight: 400;
-$lg-weight: 600;
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
 * {
   font-family: $font-family;
 }
@@ -24,8 +22,5 @@ body {
   }
   h2 {
     font-weight: 600;
-  }
-  ::-webkit-scrollbar {
-    width: 0.5rem; /* Adjust the width of the scrollbar */
   }
 }

@@ -27,3 +27,9 @@ interface Message {
   date: string;
   id: string;
 }
+
+interface LinkType {
+  url: string;
+  name: string;
+  img: string;
+}

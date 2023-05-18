@@ -3,22 +3,20 @@ import { IoIosCalendar } from "react-icons/io";
 import { AiOutlineSwap } from "react-icons/ai";
 import DatePickerInput from "./DatePickerInput";
 import AppointmentsList from "./AppointmentsList";
-// import SingleAppointment from "./SingleAppointment";
 import { useSelector } from "react-redux";
 import { RootState } from "src/utils/redux/store";
 import AppointmentTable from "./AppointmentTable";
 import SingleAppointment from "./SingleAppointment";
-// import Avatar from "../Avatar";
+
 const AppoinmentsContent = () => {
   const appointments = useSelector(
     (state: RootState) => state.appointment.appointments
   );
   const [dateBtnOpened, setDateBtnOpened] = useState<boolean>(true);
-
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-
   const [visible, setVisible] = useState(false);
   const [appointment, setAppointment] = useState<Appointment | null>(null);
+
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
   };
@@ -26,9 +24,11 @@ const AppoinmentsContent = () => {
   const handleSetVisible = (status: boolean) => {
     setVisible(status);
   };
+
   const handleSetVisibleAppointment = (appointment: Appointment | null) => {
     setAppointment(appointment);
   };
+
   return (
     <div className="capitalize">
       <div className="flex justify-between">

@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-
-export default function BarChart({
-  appointments,
-}: {
+interface TBarChart {
   appointments: Appointment[];
-}) {
+}
+export default function BarChart({ appointments }: TBarChart) {
   const [chartOptions, setChartOptions] = useState({});
   const [chartData, setChartData] = useState<any>({
     datasets: [],
@@ -46,6 +44,7 @@ export default function BarChart({
       },
     });
   }, [appointments]);
+
   return (
     <div className="md:w-[50vw] w-[100%] md:col-span-2 relative md:h-[50vh] h-[50%] md:m-auto p-4 border rounded-lg bg-white">
       <h2 className="text-2xl">Visits this month</h2>

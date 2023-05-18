@@ -5,15 +5,13 @@ import { logout } from "../utils/redux/slices/authSlice";
 import { RootState } from "../utils/redux/store";
 import { useState } from "react";
 
-const Navbar = ({
-  navOpened,
-  setNavOpened,
-  activeComponent,
-}: {
+interface TNavbar {
   navOpened: boolean;
   setNavOpened: (status: boolean) => void;
   activeComponent: string;
-}) => {
+}
+
+const Navbar = ({ navOpened, setNavOpened, activeComponent }: TNavbar) => {
   const [dropDownOpen, setDropdownOpen] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch();

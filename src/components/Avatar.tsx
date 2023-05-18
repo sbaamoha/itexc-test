@@ -1,12 +1,10 @@
-const Avatar = ({
-  img,
-  name,
-  desc,
-}: {
+interface TAvatar {
   img: string | undefined;
   name: string | undefined;
   desc: string | undefined;
-}) => {
+}
+
+const Avatar = ({ img, name, desc }: TAvatar) => {
   return (
     <div className="flex items-center gap-2">
       <img

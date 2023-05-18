@@ -1,13 +1,13 @@
 import { dateExtract } from "../../lib/date";
 
-const Message = ({
-  msg,
-  openThisMsg,
-}: {
+interface TMessage {
   msg: Message;
   openThisMsg: (msg: Message) => void;
-}) => {
+}
+
+const Message = ({ msg, openThisMsg }: TMessage) => {
   const { ampm, hours, minutes } = dateExtract(msg.date);
+
   return (
     <div
       onClick={() => openThisMsg(msg)}

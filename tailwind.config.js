@@ -15,7 +15,6 @@ export default {
     extend: {
       colors: {
         primary: "#ffffff",
-        // fontPoppins: "Poppins",
         main: "#848fac",
         blue: "#192252",
         softBlue: "#103f74",

@@ -15,17 +15,22 @@ import { login } from "../utils/redux/slices/authSlice";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 const Signup = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.auth.user?.email);
-  const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
+
+  const dispatch = useDispatch();
+
+  const user = useSelector((state: RootState) => state.auth.user?.email);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (user) {
       navigate("/dashboard");
     }
   }, [navigate, user]);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.length || !password.length) {

@@ -3,15 +3,17 @@ import { CgFileDocument } from "react-icons/cg";
 import Avatar from "../Avatar";
 import { FiDownload } from "react-icons/fi";
 
+interface TSingleAppointment {
+  appointment?: Appointment | null;
+  visible: boolean;
+  setVisible: (status: boolean) => void;
+}
+
 const SingleAppointment = ({
   appointment,
   visible,
   setVisible,
-}: {
-  appointment?: Appointment | null;
-  visible: boolean;
-  setVisible: (status: boolean) => void;
-}) => {
+}: TSingleAppointment) => {
   return (
     <div
       className={`absolute w-[90%] md:w-1/3 bg-white border rounded-sm p-6 transition-all capitalize ${
