@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteAppointmentFunc } from "../../lib/apis";
 import { deleteAppointment } from "../../utils/redux/slices/appointmentsSlice";
 import { dateExtract } from "../../lib/date";
+import { toast } from "react-toastify";
 const MedicalHistory = () => {
   const dispatch = useDispatch();
   const appoints = useSelector(
@@ -24,6 +25,7 @@ const MedicalHistory = () => {
   const handleDelteAppoint = (appointment: Appointment) => {
     dispatch(deleteAppointment(appointment.id));
     deleteMutation.mutate(appointment);
+    toast.warn("Appointment deleted");
   };
 
   return (

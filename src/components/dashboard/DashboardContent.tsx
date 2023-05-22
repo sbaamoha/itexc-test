@@ -14,8 +14,9 @@ import BarChart from "./BarChart";
 import MedicalHistory from "./MedicalHistory";
 import { getAppointments } from "../../lib/apis";
 import { useQuery } from "@tanstack/react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAppointments } from "../../utils/redux/slices/appointmentsSlice";
+import { RootState } from "src/utils/redux/store";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,6 +28,7 @@ ChartJS.register(
 
 const DashboardContent = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.auth.user);
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["appointments"],
@@ -44,13 +46,15 @@ const DashboardContent = () => {
 
   return (
     <div>
-      <h2 className="text-3xl pb-6 text-softBlue">Welcome back Dr. Taylor!</h2>
+      <h2 className="text-3xl py-6 text-softBlue">
+        Welcome back Dr. {user?.username || user?.email?.split("@")[0]}{" "}
+      </h2>
       <div>
         <div className="flex flex-col  md:flex-row-reverse gap-2">
           <div className="rounded-lg">
             <h2 className="md:text-3xl text-blue">Calendar</h2>
             <Calendar className="bg-white rounded-lg py-3" />
-            <div className="flex flex-col justify-between">
+            <div className="flex flex-col justify-between my-3">
               <div className="flex justify-between">
                 <h2 className="text-2xl text-blue font-bold">Upcoming</h2>
                 <p className="underline cursor-pointer text-softBlue">

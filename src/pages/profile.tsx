@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { Navigate } from "react-router";
 import { changeUserCredentials } from "../utils/redux/slices/authSlice";
 import SideBar from "../components/SideBar";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [activeComponent, setActiveComponent] = useState<string>("profile");
@@ -64,11 +65,11 @@ const Profile = () => {
         <div className="flex-1 p-6 rounded-xl">
           <section className="relative bg-white border pb-6 rounded-2xl my-6">
             <img
-              className="rounded-t-2xl"
+              className="rounded-t-2xl w-full"
               src="/assets/coverPhoto.svg"
               alt="cover"
             />
-            <div className="w-[90px] md:w-[150px] absolute left-5 top-[20%] lg:top-[40%] rounded-full overflow-hidden">
+            <div className="w-[90px] md:w-[150px] absolute left-5 top-[20%] lg:top-[30%] md:top-[20%] rounded-full overflow-hidden">
               {user?.image ? (
                 <img
                   className="rounded-full"
@@ -78,7 +79,7 @@ const Profile = () => {
               ) : (
                 <img
                   className="rounded-full"
-                  src="/assets/profile.svg"
+                  src="/assets/profile.png"
                   alt="profile photo"
                 />
               )}
@@ -86,7 +87,9 @@ const Profile = () => {
             <br />
             <div className="flex justify-between ml-5 md:ml-[100px] ">
               <div className="mt-12">
-                <h2 className="text-lg md:text-2xl">dr. {user?.username} </h2>
+                <h2 className="text-lg md:text-2xl">
+                  dr. {user?.username || user?.email.split("@")[0]}{" "}
+                </h2>
                 <br />
                 <p className="text-main">
                   Specialist of skin surgery in Moustafa bacha
@@ -97,10 +100,12 @@ const Profile = () => {
                 </button>
               </div>
               <div className="flex-1 flex items-start justify-end mx-3">
-                <button className="flex items-center gap-2 border p-3 text-softBlue hover:opacity-80 rounded-lg">
-                  <BsFillPencilFill />
-                  <p className="hidden md:inline">Edit profile</p>
-                </button>
+                <Link to="#edit">
+                  <button className="flex items-center gap-2 border p-3 text-softBlue hover:opacity-80 rounded-lg">
+                    <BsFillPencilFill />
+                    <p className="hidden md:inline">Edit profile</p>
+                  </button>
+                </Link>
               </div>
             </div>
           </section>
@@ -143,7 +148,7 @@ const Profile = () => {
             </div>
             <h2 className="text-2xl text-softBlue">Profile picture</h2>
             <br />
-            <div className="flex items-center gap-2">
+            <div id="edit" className="flex items-center gap-2">
               <div className="w-[90px] md:w-[150px] rounded-full">
                 {user?.image ? (
                   <img
@@ -154,7 +159,7 @@ const Profile = () => {
                 ) : (
                   <img
                     className="rounded-full border"
-                    src="/assets/profile.svg"
+                    src="/assets/profile.png"
                     alt="profile photo"
                   />
                 )}

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { navLinks } from "../lib/links";
 import { RootState } from "../utils/redux/store";
 
@@ -57,7 +57,7 @@ const SideBar = ({
                       alt="photo profile"
                     />
                   ) : (
-                    <p>{user.username} </p>
+                    <p>{user.username || user?.email.split("@")[0]} </p>
                   )}
                   <button
                     onClick={() => onLinkClick("profile")}
@@ -67,9 +67,9 @@ const SideBar = ({
                   </button>
                 </div>
               ) : (
-                <a className="btn-outline px-2" href="/login">
+                <Link className="btn-outline px-2" to="/login">
                   login
-                </a>
+                </Link>
               )}
             </div>
             <div className="flex items-center gap-3 my-6">

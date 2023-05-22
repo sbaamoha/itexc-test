@@ -30,7 +30,7 @@ const AppointmentTable = ({
           <thead>
             <tr className="w-10">
               <th className="px-2 w-3">Psst</th>
-              {appointments.map((malade) => (
+              {appointments.slice(0, 4).map((malade) => (
                 <th
                   key={malade.id}
                   className="px-4 py-2 border-r border-l cursor-pointer"
@@ -60,10 +60,10 @@ const AppointmentTable = ({
                 <td className="px-4 border py-2 text-main text-xs whitespace-nowrap align-top">
                   {hour}
                 </td>
-                {appointments.map((malade) => {
+                {appointments.slice(0, 4).map((malade) => {
                   const { hours } = dateExtract(malade.date);
                   const hourWithAmpm = `${hours}`;
-                  console.log(hours, hourWithAmpm, hour.split(":")[0]);
+                  // console.log(hours, hourWithAmpm, hour.split(":")[0]);
                   // console.log(hourWithAmpm == hour.split(":")[0]);
                   return (
                     <td

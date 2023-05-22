@@ -36,13 +36,20 @@ const Login = () => {
       toast.error("Please fill all fields");
       return;
     }
+    if (password.length < 6) {
+      toast.error("Password Should Have 6 characters or more!");
+      return;
+    }
     const user = await loginWithEmailAndPassword(email, password);
+
     if (user?.token) {
       dispatch(login({ user }));
       if (rememberMe) {
         Cookies.set("user", JSON.stringify(user));
       }
       navigate("/dashboard");
+    } else {
+      toast.error("Error : Email or Password is incorrect");
     }
   }
 

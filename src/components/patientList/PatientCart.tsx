@@ -8,7 +8,7 @@ const PatientCart = ({
   return (
     <div key={a.id} className="p-3 flex flex-col border rounded-lg">
       <div className="border-b ">
-        <img className="w-[50px] " src="/assets/appointment.svg" alt="" />
+        <img className="w-[50px] rounded-full " src={a.avatar} alt={a.name} />
         <div className="my-2">
           <h2 className="text-softBlue text-xl">{a.name} </h2>
           <p className="text-main text-sm">{a.desc}</p>

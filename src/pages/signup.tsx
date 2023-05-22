@@ -37,8 +37,15 @@ const Signup = () => {
       toast.error("Please fill all fields");
       return;
     }
+    if (password.length < 6) {
+      toast.error("Password Should Have 6 characters or more!");
+      return;
+    }
+
     const res = await registerWithEmailAndPassword(name, email, password);
-    if (res) {
+    if (!res.success) {
+      toast.error(`Error: ${res.error}`);
+    } else {
       navigate("/login");
     }
   }

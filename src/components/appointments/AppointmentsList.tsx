@@ -6,6 +6,7 @@ import {
   acceptAppointment,
   deleteAppointment,
 } from "../../utils/redux/slices/appointmentsSlice";
+import { toast } from "react-toastify";
 
 interface TAppointmentList {
   appointments: Appointment[];
@@ -32,11 +33,13 @@ const AppointmentsList = ({ appointments }: TAppointmentList) => {
   const handleDeleteAppoint = (appointment: Appointment) => {
     dispatch(deleteAppointment(appointment.id));
     deleteMutation.mutate(appointment);
+    toast.warn("Appointment Deleted ");
   };
 
   const handleAcceptAppoint = (appointment: Appointment) => {
     dispatch(acceptAppointment(appointment));
     acceptMutation.mutate({ ...appointment, accepted: true });
+    toast.success("Appointment Accepted ");
   };
 
   return (

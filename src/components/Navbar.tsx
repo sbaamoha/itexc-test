@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { logout } from "../utils/redux/slices/authSlice";
 import { RootState } from "../utils/redux/store";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface TNavbar {
   navOpened: boolean;
@@ -57,25 +58,27 @@ const Navbar = ({ navOpened, setNavOpened, activeComponent }: TNavbar) => {
         {user?.email ? (
           <div
             onClick={() => setDropdownOpen((prev) => !prev)}
-            className="relative w-[43px] md:w-[63px] h-[50px] flex items-center cursor-pointer "
+            className="relative flex justify-center items-center bg-gray-100 rounded-full cursor-pointer "
           >
             {user.image ? (
               <img
-                className="border rounded-full"
+                className="border rounded-full w-[43px] md:w-[63px] h-[63px]"
                 src={user.image}
                 alt="photo profile"
               />
             ) : (
-              <p>{user.username} </p>
+              <p className="text-sm p-3">
+                {user.username || user?.email.split("@")[0]}{" "}
+              </p>
             )}
             {dropDownOpen && (
               <div
                 className="absolute bottom-[-150px] right-0 flex flex-col gap-3 w-[200px] capitalize bg-white 
               shadow-lg border rounded-md z-10 p-6"
               >
-                <a href="/profile" className="border-b">
+                <Link to="/profile" className="border-b">
                   profile
-                </a>
+                </Link>
                 <button className="btn-outline" onClick={handleLogout}>
                   log out
                 </button>

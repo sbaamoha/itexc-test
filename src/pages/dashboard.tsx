@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import DashboardContent from "../components/dashboard/DashboardContent";
 import Navbar from "../components/Navbar";
@@ -6,10 +7,15 @@ import AppoinmentsContent from "../components/appointments/AppoinmentsContent";
 import MessagesContent from "../components/messages/MessagesContent";
 import PatienListContent from "../components/patientList/PatienListContent";
 import MedicalHistoryContent from "../components/MedicalHistoryContent";
+import { useSelector } from "react-redux";
+import { RootState } from "src/utils/redux/store";
 
 const Dashboard = () => {
   const [activeComponent, setActiveComponent] = useState<string>("dashboard");
   const [navOpened, setNavOpened] = useState(false);
+  const navigate = useNavigate();
+
+  const user = useSelector((state: RootState) => state.auth.user);
 
   const handleLinkClick = (component: string) => {
     setActiveComponent(component);
@@ -17,6 +23,12 @@ const Dashboard = () => {
   const handleNavMenuClick = (status: boolean) => {
     setNavOpened(status);
   };
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [navigate, user]);
 
   return (
     <section>

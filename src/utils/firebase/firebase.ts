@@ -47,11 +47,16 @@ export const registerWithEmailAndPassword = async (
       authProvider: "local",
       email,
     });
-    return true;
+    return {
+      success: true,
+    };
   } catch (err) {
     console.log(err);
     // alert(err);
-    return false;
+    return {
+      success: false,
+      error: err,
+    };
   }
 };
 
@@ -107,17 +112,23 @@ export const loginWithGoogle = async () => {
 };
 
 export const loginWithEmailAndPassword = async (
-  email: string,
+  Email: string,
   password: string
 ) => {
   try {
-    const res = await signInWithEmailAndPassword(auth, email, password);
+    const res = await signInWithEmailAndPassword(auth, Email, password);
+
     return {
       username: res.user.displayName,
       email: res.user.email,
       token: res.user.refreshToken,
     };
   } catch (err) {
-    alert(err);
+    // return {
+    //   success: false,
+    //   error: err,
+    // };
+    console.log(err);
+    // alert(err);
   }
 };
