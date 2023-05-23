@@ -95,7 +95,7 @@ const SideBar = ({
         {navLinks.map((link, index) => (
           <li key={index}>
             <NavLink
-              to="#"
+              to="/dashboard"
               className={`flex text-main items-center gap-2 capitalize py-3 px-3 rounded-lg ${
                 activeComponent === link.name ? "text-black bg-gray-100" : ""
               }`}
