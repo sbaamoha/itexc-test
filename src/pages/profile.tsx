@@ -54,7 +54,7 @@ const Profile = () => {
         navOpened={navOpened}
         setNavOpened={handleNavMenuClick}
       />
-      <section className="flex justify-center">
+      <section className="flex justify-center w-[90%] ">
         <SideBar
           hidden
           setNavOpened={handleNavMenuClick}
