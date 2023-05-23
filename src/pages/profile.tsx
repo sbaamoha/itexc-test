@@ -54,7 +54,7 @@ const Profile = () => {
         navOpened={navOpened}
         setNavOpened={handleNavMenuClick}
       />
-      <section className="flex justify-center w-[90%] ">
+      <section className="flex justify-center mx-auto w-[90%] ">
         <SideBar
           hidden
           setNavOpened={handleNavMenuClick}
