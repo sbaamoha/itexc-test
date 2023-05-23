@@ -62,7 +62,8 @@ const Navbar = ({ navOpened, setNavOpened, activeComponent }: TNavbar) => {
           >
             {user.image ? (
               <img
-                className="border rounded-full w-[43px] md:w-[63px] h-[63px]"
+                className="border rounded-full w-[43px] md:w-[63px] h-[43px]
+                md:h-[63px]"
                 src={user.image}
                 alt="photo profile"
               />

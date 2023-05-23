@@ -54,7 +54,7 @@ const Profile = () => {
         navOpened={navOpened}
         setNavOpened={handleNavMenuClick}
       />
-      <section className="flex">
+      <section className="flex ">
         <SideBar
           hidden
           setNavOpened={handleNavMenuClick}
@@ -69,7 +69,7 @@ const Profile = () => {
               src="/assets/coverPhoto.svg"
               alt="cover"
             />
-            <div className="w-[90px] md:w-[150px] absolute left-5 top-[20%] lg:top-[30%] md:top-[20%] rounded-full overflow-hidden">
+            <div className="w-[90px] md:w-[150px] absolute left-5 top-[10%] lg:top-[30%] md:top-[20%] rounded-full overflow-hidden">
               {user?.image ? (
                 <img
                   className="rounded-full"
@@ -85,8 +85,8 @@ const Profile = () => {
               )}
             </div>
             <br />
-            <div className="flex justify-between ml-5 md:ml-[100px] ">
-              <div className="mt-12">
+            <div className="flex justify-between md:ml-[100px] ">
+              <div className="ml-5 mt-12">
                 <h2 className="text-lg md:text-2xl">
                   dr. {user?.username || user?.email.split("@")[0]}{" "}
                 </h2>

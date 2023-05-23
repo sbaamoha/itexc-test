@@ -59,12 +59,9 @@ const SideBar = ({
                   ) : (
                     <p>{user.username || user?.email.split("@")[0]} </p>
                   )}
-                  <button
-                    onClick={() => onLinkClick("profile")}
-                    className="btn-outline px-3 text-sm"
-                  >
+                  <Link to="/profile" className="btn-outline px-3 text-sm">
                     Edit My Profile
-                  </button>
+                  </Link>
                 </div>
               ) : (
                 <Link className="btn-outline px-2" to="/login">
