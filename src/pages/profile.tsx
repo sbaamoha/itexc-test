@@ -85,7 +85,7 @@ const Profile = () => {
               )}
             </div>
             <br />
-            <div className="flex justify-between ml-3 md:ml-[100px] ">
+            <div className="flex justify-between ml-5 md:ml-[100px] ">
               <div className="ml-5 mt-12">
                 <h2 className="text-lg md:text-2xl">
                   dr. {user?.username || user?.email.split("@")[0]}{" "}
