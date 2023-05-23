@@ -54,7 +54,7 @@ const Profile = () => {
         navOpened={navOpened}
         setNavOpened={handleNavMenuClick}
       />
-      <section className="flex justify-center mx-auto w-[90%] px-3 md:px-1 ">
+      <section className="flex justify-center mx-auto w-[90%]">
         <SideBar
           hidden
           setNavOpened={handleNavMenuClick}
@@ -62,7 +62,7 @@ const Profile = () => {
           onLinkClick={handleLinkClick}
           activeComponent={activeComponent}
         />
-        <div className="flex-1 p-6 rounded-xl">
+        <div className="flex-1 p-6 mx-3 md:mx-1 rounded-xl">
           <section className="relative bg-white border pb-6 rounded-2xl my-6">
             <img
               className="rounded-t-2xl w-full"
