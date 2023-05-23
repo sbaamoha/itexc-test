@@ -69,7 +69,7 @@ const Profile = () => {
               src="/assets/coverPhoto.svg"
               alt="cover"
             />
-            <div className="w-[90px] md:w-[150px] absolute left-5 top-[10%] lg:top-[35%] md:top-[20%] rounded-full overflow-hidden">
+            <div className="w-[5.6rem] md:w-[150px] absolute left-5 top-[10%] lg:top-[35%] md:top-[20%] rounded-full overflow-hidden">
               {user?.image ? (
                 <img
                   className="rounded-full"
